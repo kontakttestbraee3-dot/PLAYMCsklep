@@ -2,17 +2,18 @@ const webhookURL = "https://discord.com/api/webhooks/1487814743744843976/BvnlOCU
 
 function wyslijNaDiscord(ranga, cena) {
     const wiadomosc = {
-        "username": "Sklep PLAYMC",
-        "avatar_url": "https://crafatar.com/avatars/xIWOJTEKIx",
+        "username": "System Płatności PlayMC.pl", // Nazwa bota na DC
+        "avatar_url": "https://crafatar.com/avatars/xIWOJTEKIx", // Tu możesz dać link do logo serwera
         "embeds": [{
-            "title": "💰 NOWE KLIKNIĘCIE W SKLEPIE!",
-            "description": `Ktoś właśnie wybrał rangę **${ranga}** za **${cena}**!`,
-            "color": 3066993,
+            "title": "⚡ NOWE ZAMÓWIENIE: " + ranga,
+            "description": "Gracz właśnie wybrał pakiet w sklepie internetowym.",
+            "color": 15844367, // Złoty kolor (Gold)
             "fields": [
-                { "name": "Status", "value": "Oczekiwanie na wpłatę PayPal", "inline": true },
-                { "name": "Serwer", "value": "PLAYMC.PL", "inline": true }
+                { "name": "Ranga", "value": ranga, "inline": true },
+                { "name": "Kwota", "value": cena, "inline": true },
+                { "name": "Instrukcja", "value": "Sprawdź panel PayPal i nadaj rangę komendą /lp user nick parent set " + ranga.toLowerCase(), "inline": false }
             ],
-            "footer": { "text": "Sprawdź saldo na PayPal!" },
+            "footer": { "text": "Serwer: PlayMC.pl | Automatyczny System Powiadomień" },
             "timestamp": new Date()
         }]
     };
@@ -21,20 +22,5 @@ function wyslijNaDiscord(ranga, cena) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(wiadomosc)
-    }).then(() => console.log("Powiadomienie wysłane!"));
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    const przyciski = document.querySelectorAll('.buy-btn');
-    przyciski.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const ranga = e.target.closest('.card').querySelector('h3').innerText;
-            const cena = e.target.closest('.card').querySelector('.price').innerText;
-            wyslijNaDiscord(ranga, cena);
-            if (window.confetti) {
-                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-            }
-            alert("Przenoszę do PayPal. PAMIĘTAJ: W tytule przelewu wpisz swój NICK Z GRY!");
-        });
     });
-});
+}
