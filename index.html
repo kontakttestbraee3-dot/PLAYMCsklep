@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sklep Serwera Minecraft</title>
+    <title>PlayMC.pl | Sklep Serwera</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script type="text/javascript">
+       (function(){ emailjs.init("dB0RtQCeF-MvMRCeE"); })();
+    </script>
+
     <style>
         /* PROSTY I NOWOCZESNY WYGLĄD */
         body {
-            background-color: #ffffff; /* Białe tło */
+            background-color: #ffffff;
             color: #222;
             font-family: 'Segoe UI', Roboto, sans-serif;
             margin: 0;
@@ -16,6 +22,29 @@
             flex-direction: column;
             align-items: center;
         }
+
+        /* NAWIGACJA */
+        nav {
+            background: rgba(0,0,0,0.9);
+            padding: 15px;
+            text-align: center;
+            border-bottom: 3px solid #ffaa00;
+            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: #ffaa00; }
 
         header {
             background: #111;
@@ -46,11 +75,10 @@
             border: 1px solid #eee;
             border-radius: 15px;
             padding: 30px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Płynna animacja */
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
         }
 
-        /* ANIMACJA PO NAJECHANIU */
         .card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
@@ -66,13 +94,16 @@
         }
 
         .buy-btn {
-            background-color: #0070ba; /* Kolor PayPal */
+            background-color: #0070ba;
             color: white;
-            text-decoration: none;
+            border: none;
             padding: 12px 25px;
             border-radius: 50px;
             font-weight: bold;
             display: inline-block;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
             transition: 0.3s;
         }
 
@@ -81,11 +112,7 @@
             transform: scale(1.05);
         }
 
-        /* MOTYKI */
-        .unavailable {
-            color: #999;
-            font-style: italic;
-        }
+        .unavailable { color: #999; font-style: italic; }
 
         /* ADMINISTRACJA */
         .admin-flex {
@@ -98,13 +125,9 @@
 
         .admin-card img {
             width: 130px;
-            image-rendering: pixelated; /* Skiny wyglądają ostro */
+            image-rendering: pixelated;
             filter: drop-shadow(0 10px 10px rgba(0,0,0,0.2));
             transition: 0.4s;
-        }
-
-        .admin-card:hover img {
-            transform: rotate(-5deg) scale(1.1);
         }
 
         footer {
@@ -117,62 +140,51 @@
             width: 80%;
         }
 
-        /* ANIMACJA POJAWIANIA SIĘ STRONY */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .animate-in {
-            animation: fadeIn 1.5s ease;
-        }
+        .animate-in { animation: fadeIn 1.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body class="animate-in">
 
-<div style="text-align: center; margin: 20px 0;">
-    <a href="https://kontakttestbraee3-dot.github.io/PLAYMCsklep/pvp.html" 
-       style="background: linear-gradient(45deg, #ff0000, #990000); color: white; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 1.5rem; display: inline-block; border: 2px solid #ffffff; box-shadow: 0 0 15px #ff0000;">
-       KLIKNIJ TUTAJ: SKLEP PVP & KLUCZE ⚔️
-    </a>
-</div>
-
-<nav style="background: rgba(0,0,0,0.8); padding: 15px; text-align: center; border-bottom: 2px solid #ffaa00;">
-    <a href="index.html" style="color: white; text-decoration: none; margin: 0 20px; font-weight: bold; font-size: 1.2rem;">🏠 RANGI</a>
-    <a href="https://kontakttestbraee3-dot.github.io/PLAYMCsklep/pvp.html" style="color: #ff4444; text-decoration: none; margin: 0 20px; font-weight: bold; font-size: 1.2rem; text-shadow: 0 0 10px #ff0000;">⚔️ STREFA PVP</a>
+<nav>
+    <a href="index.html">🏠 RANGI</a>
+    <a href="https://kontakttestbraee3-dot.github.io/PLAYMCsklep/pvp.html" style="color: #ff4444;">⚔️ STREFA PVP & KLUCZE</a>
 </nav>
 
 <header>
-    <h1>SKLEP SERWERA</h1>
-    <p>Witaj, wybierz coś dla siebie!</p>
+    <h1>PLAYMC.PL - SKLEP</h1>
+    <p>Witaj, wybierz rangę i wspieraj serwer!</p>
 </header>
 
 <div class="container">
-    <h2>Kategoria: Zakup</h2>
+    
+    <div style="margin-bottom: 40px;">
+        <a href="https://kontakttestbraee3-dot.github.io/PLAYMCsklep/pvp.html" 
+           style="background: linear-gradient(45deg, #ff0000, #990000); color: white; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 1.2rem; display: inline-block; border: 2px solid #ffffff; box-shadow: 0 0 15px rgba(255,0,0,0.4);">
+           ZOBACZ SKLEP PVP & KLUCZE ⚔️
+        </a>
+    </div>
+
+    <h2>Kategoria: Rangi</h2>
     <div class="shop-grid">
         <div class="card">
             <h3>VIP</h3>
             <span class="price">7 zł</span>
             <p>Podstawowe dodatki</p>
-            <a href="https://www.paypal.com/paypalme/xIWOJTEKIxMinecraft/7PLN" target="_blank" class="buy-btn">KUP TERAZ</a>
+            <button class="buy-btn">KUP TERAZ</button>
         </div>
         <div class="card">
             <h3>SVIP</h3>
             <span class="price">9 zł</span>
             <p>Super komendy i efekty</p>
-            <a href="https://www.paypal.com/paypalme/xIWOJTEKIxMinecraft/9PLN" target="_blank" class="buy-btn">KUP TERAZ</a>
+            <button class="buy-btn">KUP TERAZ</button>
         </div>
         <div class="card">
             <h3>MVP</h3>
             <span class="price">10 zł</span>
             <p>Najwyższa ranga na serwerze</p>
-            <a href="https://www.paypal.com/paypalme/xIWOJTEKIxMinecraft/10PLN" target="_blank" class="buy-btn">KUP TERAZ</a>
+            <button class="buy-btn">KUP TERAZ</button>
         </div>
-        <div class="card" style="border-color: #e67e22;">
-    <h3>TEST POWIADOMIENIA</h3>
-    <span class="price">0 PLN</span>
-    <p>Kliknij, aby sprawdzić czy Discord działa!</p>
-    <a href="#" class="buy-btn" style="background: #e67e22;">TESTUJ DC</a>
-</div>
     </div>
 
     <h2 style="margin-top: 60px;">-- Motyki --</h2>
@@ -197,24 +209,44 @@
 </footer>
 
 <script>
-    // Dodatkowy efekt: Po kliknięciu w przycisk wyskakuje okienko
+    const mojPaypal = "https://www.paypal.me/xIWOJTEKIxMinecraft";
+
+    function kupPrzedmiot(ranga, cena) {
+        // 1. EmailJS
+        emailjs.send("service_q1kynjt", "template_r619zzc", {
+            ranga: ranga,
+            cena: cena
+        });
+
+        // 2. Discord Webhook
+        fetch("https://discord.com/api/webhooks/1487814743744843976/BvnlOCUyVYNqKO7Z1AYig-TdScNWB7LnKppQLUAE9FpTFuMsTjPW1e1OtueNc_1DQZkf", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                "content": `💰 **NOWA RANGI NA PLAYMC.PL!** \nGracz chce kupić: **${ranga}** \nCena: **${cena}**`
+            })
+        });
+
+        // 3. Konfetti
+        confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+
+        // 4. Przekierowanie
+        const kwota = cena.replace(/[^0-9.]/g, ''); 
+        setTimeout(() => {
+            alert("Przenoszę do PayPal. PAMIĘTAJ: W tytule przelewu wpisz swój NICK z gry!");
+            window.location.href = mojPaypal + "/" + kwota + "PLN";
+        }, 800);
+    }
+
     document.querySelectorAll('.buy-btn').forEach(button => {
-        button.onclick = function() {
-            alert("Zostaniesz przekierowany do PayPal. Pamiętaj, aby w tytule wpłaty podać swój nick z gry!");
-        }
+        button.addEventListener('click', function() {
+            const karta = this.closest('.card');
+            const nazwa = karta.querySelector('h3').innerText;
+            const cena = karta.querySelector('.price').innerText;
+            kupPrzedmiot(nazwa, cena);
+        });
     });
 </script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script type="text/javascript">
-   (function(){
-      // Twoje Public Key
-      emailjs.init("dB0RtQCeF-MvMRCeE");
-   })();
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-
-<script src="js/script.js"></script>
 
 </body>
 </html>
