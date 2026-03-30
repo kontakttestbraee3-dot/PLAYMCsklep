@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlayMC.pl | STREFA PVP & KLUCZE</title>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){ emailjs.init("dB0RtQCeF-MvMRCeE"); })();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+    <style>
+        body {
+            background: radial-gradient(circle, #330000 0%, #000000 100%);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-bottom: 2px solid #ff0000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: #ff4444; }
+
+        header { padding: 40px; }
+        header h1 { font-size: 3rem; text-shadow: 2px 2px 10px #ff0000; margin-bottom: 5px; }
+
+        .shop-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(40, 0, 0, 0.6);
+            border: 1px solid #ff4444;
+            border-radius: 15px;
+            padding: 20px;
+            width: 250px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 20px #ff0000;
+        }
+
+        .card img { width: 80px; height: 80px; margin-bottom: 15px; }
+        .card h3 { margin: 10px 0; font-size: 1.4rem; }
+        .card .price { font-size: 1.8rem; color: #00ff00; font-weight: bold; margin: 15px 0; }
+        
+        .buy-btn {
+            background: #ff0000;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .buy-btn:hover { background: #b30000; }
+        .buy-btn:disabled { background: #555; cursor: not-allowed; }
+
+        .section-title { width: 100%; font-size: 2rem; border-bottom: 2px solid #ff4444; padding-bottom: 10px; margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">🏠 POWRÓT DO RANG</a>
+        <a href="pvp.html" style="color: #ff4444;">⚔️ STREFA PVP & KLUCZE</a>
+    </nav>
+
+    <header>
+        <h1>⚔️ SKLEP PVP & KLUCZE ⚔️</h1>
+        <p>Najlepszy ekwipunek na serwerze <b>PlayMC.pl</b></p>
+    </header>
+
+    <div class="shop-container">
+        
+        <div class="section-title">Zestawy Bojowe</div>
+
+        <div class="card">
+            <img src="https://minecraft.wiki/images/Enchanted_Golden_Apple_JE2_BE2.png" alt="Koxy">
+            <h3>128x Kox</h3>
+            <p class="price">5.00 PLN</p>
+            <button class="buy-btn">KUP TERAZ</button>
+        </div>
+
+        <div class="card">
+            <img src="https://minecraft.wiki/images/Netherite_Sword_JE2_BE2.png" alt="Miecz">
+            <h3>Miecz S4 U3</h3>
+            <p class="price">12.00 PLN</p>
+            <button class="buy-btn">KUP TERAZ</button>
+        </div>
+
+        <div class="section-title">Zestawy Kluczy</div>
+
+        <div class="card">
+            <h3>Klucze Poziom 1</h3>
+            <p class="price">3.50 PLN</p>
+            <button class="buy-btn">KUP TERAZ</button>
+        </div>
+
+        <div class="card">
+            <h3>Klucze Poziom 2</h3>
+            <p class="price">5.00 PLN</p>
+            <button class="buy-btn">KUP TERAZ</button>
+        </div>
+
+        <div class="card">
+            <h3>Klucze Poziom 3</h3>
+            <p class="price">10.00 PLN</p>
+            <button class="buy-btn">KUP TERAZ</button>
+        </div>
+
+        <div class="section-title">Pojedyncze Klucze</div>
+
+        <div class="card">
+            <h3>Klucz Rzadka</h3>
+            <p class="price">1.00 PLN</p>
+            <button class="buy-btn">KUP TERAZ</button>
+        </div>
+
+        <div class="card">
+            <h3>Klucz Epicka</h3>
+            <p class="price">2.00 PLN</p>
+            <button class="buy-btn">KUP TERAZ</button>
+        </div>
+
+        <div class="card">
+            <h3>Klucz Legendarna</h3>
+            <p class="price">3.00 PLN</p>
+            <button class="buy-btn">KUP TERAZ</button>
+        </div>
+
+        <div class="card">
+            <h3>Klucz Mityczna</h3>
+            <p class="price" style="color: #ff4444;">NIEDOSTĘPNE</p>
+            <button class="buy-btn" disabled>BRAK</button>
+        </div>
+
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
