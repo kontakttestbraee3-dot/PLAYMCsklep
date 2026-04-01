@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>TERMINAL | PLAYMC.PL</title>
+    <style>
+        body {
+            background-color: #050505;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            margin: 0;
+            overflow: hidden;
+        }
+        #output {
+            height: 85vh;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #222;
+        }
+        .input-line { display: flex; align-items: center; }
+        input {
+            background: transparent;
+            border: none;
+            color: #00ff00;
+            font-family: inherit;
+            font-size: 1.1rem;
+            outline: none;
+            width: 100%;
+            margin-left: 10px;
+        }
+        .user { color: #55ff55; }
+    </style>
+</head>
+<body>
+
+<div id="output">
+[SYSTEM READY]
+Type 'help' to see available commands...
+----------------------------------------
+</div>
+
+<div class="input-line">
+    <span class="user">guest@playmc:~$</span>
+    <input type="text" id="cmd" autofocus>
+</div>
+
+<script>
+    const out = document.getElementById('output');
+    const input = document.getElementById('cmd');
+
+    input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            const val = input.value.trim().toLowerCase();
+            const line = document.createElement('div');
+            line.innerHTML = `<span style="color:#aaa">> ${val}</span>`;
+            out.appendChild(line);
+
+            if (val === 'help') {
+                print("Dostępne komendy: \n- shop: wróć do sklepu \n- stats: sprawdź status \n- admin: panel logowania \n- clear: wyczyść konsolę");
+            } else if (val === 'shop') {
+                window.location.href = "index.html";
+            } else if (val === 'admin') {
+                window.location.href = "admin.html";
+            } else if (val === 'stats') {
+                window.location.href = "stats.xhtml";
+            } else if (val === 'clear') {
+                out.innerHTML = "[SYSTEM REBOOTED]\n";
+            } else {
+                print("Błąd: Polecenie '" + val + "' nie istnieje.");
+            }
+
+            input.value = "";
+            out.scrollTop = out.scrollHeight;
+        }
+    });
+
+    function print(text) {
+        const d = document.createElement('div');
+        d.innerText = text;
+        out.appendChild(d);
+    }
+</script>
+</body>
+</html>
