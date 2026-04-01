@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>🔐 PANEL ADMINISTRATORA | PLAYMC.PL</title>
+    <style>
+        body { background: #0a0a0a; color: #00ff00; font-family: 'Courier New', monospace; margin: 0; display: none; } /* Ukrywamy stronę na start */
+        .admin-container { padding: 30px; }
+        .dashboard { display: grid; grid-template-columns: 1fr 2fr; gap: 20px; }
+        .box { border: 1px solid #00ff00; padding: 15px; background: #111; }
+        input, select { background: #000; border: 1px solid #00ff00; color: #00ff00; padding: 5px; margin: 5px 0; width: 100%; }
+        button { background: #00ff00; color: #000; border: none; padding: 10px; cursor: pointer; font-weight: bold; width: 100%; }
+        button:hover { background: #00cc00; }
+        .logs { background: #000; height: 300px; overflow-y: scroll; padding: 10px; border: 1px solid #333; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<div class="admin-container">
+    <h1>[!] PANEL ZARZĄDZANIA SERWEREM</h1>
+    <p>Zalogowano jako: <strong>Administrator</strong></p>
+    <hr/>
+
+    <div class="dashboard">
+        <div class="box">
+            <h3>⚙️ ZARZĄDZANIE RANGAMI</h3>
+            <label>Wybierz rangę:</label>
+            <select id="rank">
+                <option>VIP</option>
+                <option>SVIP</option>
+                <option>MVP</option>
+            </select>
+            <label>Nowa cena (PLN):</label>
+            <input type="number" id="price" placeholder="np. 15"/>
+            <button onclick="updatePrice()">ZATWIERDŹ ZMIANĘ</button>
+        </div>
+
+        <div class="box">
+            <h3>📜 LATEST.LOG</h3>
+            <div class="logs" id="logBox">
+                [19:42:01] [System/INFO]: Inicjalizacja panelu administratora...<br/>
+                [19:42:05] [Auth/INFO]: Poprawne logowanie: kontakt.testbraee3@gmail.com<br/>
+            </div>
+        </div>
+    </div>
+
+    <br/>
+    <a href="index.html" style="color: #666; text-decoration: none;">← Wróć do strony głównej</a>
+</div>
+
+<script>
+    // --- SYSTEM LOGOWANIA ---
+    const PASS = "zmaslo123"; // ZMIEŃ TO NA SWOJE HASŁO!
+
+    function checkAuth() {
+        let userPass = prompt("🔐 PANEL CHRONIONY. Podaj hasło administratora:");
+        
+        if (userPass === PASS) {
+            document.body.style.display = "block"; // Pokazuje stronę tylko po poprawnym haśle
+        } else {
+            alert("❌ BŁĘDNE HASŁO! Powrót na stronę główną.");
+            window.location.href = "index.html";
+        }
+    }
+
+    // Wywołaj sprawdzenie od razu przy ładowaniu
+    checkAuth();
+
+    // --- LOGIKA PANELU ---
+    function updatePrice() {
+        let r = document.getElementById('rank').value;
+        let p = document.getElementById('price').value;
+        let log = document.getElementById('logBox');
+        
+        if(p) {
+            log.innerHTML += `[${new Date().toLocaleTimeString()}] [ADMIN/CONFIG]: Zmieniono cenę ${r} na ${p} PLN<br/>`;
+            alert("Zmieniono cenę w pamięci podręcznej! Pamiętaj, aby zaktualizować kod na GitHubie, by zmiany były stałe.");
+        }
+    }
+</script>
+
+</body>
+</html>
