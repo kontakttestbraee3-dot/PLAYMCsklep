@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl">
+<head>
+    <title>Statystyki Serwera</title>
+    <style type="text/css">
+        body {
+            background-color: #0f0f0f;
+            color: #00ff00;
+            font-family: "Courier New", Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            border: 1px solid #00ff00;
+            padding: 20px;
+            background: #1a1a1a;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+            width: 400px;
+            text-align: center;
+        }
+        .header {
+            font-size: 1.5em;
+            border-bottom: 1px solid #00ff00;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+        }
+        .data {
+            text-align: left;
+            margin-left: 50px;
+        }
+        .status-online { color: #55ff55; }
+        .status-offline { color: #ff5555; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">SYSTEM_STATUS_v1.0</div>
+    
+    <div class="data">
+        <p>SERWER: playmcminecraft.falix.gg</p>
+        <p>WERSJA: 1.20 - 1.21.3</p>
+        <p>STATUS: <span id="st" class="status-offline">ŁADOWANIE...</span></p>
+        <p>GRACZE: <span id="pl">- / -</span></p>
+    </div>
+
+    <script type="text/javascript">
+    // <![CDATA[
+        async function fetchMC() {
+            try {
+                const r = await fetch('https://api.mcstatus.io/v2/status/java/playmcminecraft.falix.gg');
+                const d = await r.json();
+                const s = document.getElementById('st');
+                const p = document.getElementById('pl');
+
+                if (d.online) {
+                    s.innerText = "ONLINE";
+                    s.className = "status-online";
+                    p.innerText = d.players.online + " / " + d.players.max;
+                } else {
+                    s.innerText = "OFFLINE";
+                    s.className = "status-offline";
+                    p.innerText = "0 / 0";
+                }
+            } catch (e) {
+                document.getElementById('st').innerText = "ERROR";
+            }
+        }
+        fetchMC();
+        setInterval(fetchMC, 20000);
+    // ]]>
+    </script>
+</div>
+
+</body>
+</html>
